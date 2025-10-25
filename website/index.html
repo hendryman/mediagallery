@@ -17,13 +17,9 @@
         rel="stylesheet" 
         href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-video.min.css"
     />
-    <link 
-        rel="stylesheet" 
+    <link
+        rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-thumbnail.min.css"
-    />
-    <link 
-        rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-masonry.min.css"
     />
 
     <style>
@@ -35,8 +31,6 @@
         
         /* ... existing styles ... */
         .gallery-item {
-            /* Width will be controlled by masonry plugin */
-            margin-bottom: 15px; /* Spacing for masonry */
             overflow: hidden;
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -100,11 +94,12 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* Add some padding for the masonry container */
+        /* CSS Grid layout for gallery */
         #lightgallery {
-            padding: 15px;
-            /* Masonry will add its own styles, but we need to ensure it's a block */
-            display: block;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0;
         }
     </style>
     
@@ -163,18 +158,10 @@
     <script 
         src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js"
     ></script>
-    <script 
+    <script
         src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/fullscreen/lg-fullscreen.min.js"
     ></script>
-    
-    <!-- FIX: Swapped unpkg for cdnjs for the Masonry core library -->
-    <script 
-        src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"
-    ></script>
-    <script 
-        src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/masonry/lg-masonry.min.js"
-    ></script>
-    
+
     <!-- 5. Custom JS to build and init the gallery -->
     <script type="text/javascript">
         
@@ -186,8 +173,7 @@
             'lgVideo': window.lgVideo,
             'lgThumbnail': window.lgThumbnail,
             'lgZoom': window.lgZoom,
-            'lgFullscreen': window.lgFullscreen,
-            'lgMasonry': window.lgMasonry
+            'lgFullscreen': window.lgFullscreen
         };
 
         const loadedPlugins = [];
@@ -207,11 +193,7 @@
             speed: 500,
             download: true,
             plugins: loadedPlugins, // Only pass the plugins that successfully loaded
-            thumbnail: true,
-            masonry: {
-                itemSelector: '.gallery-item',
-                percentPosition: true
-            }
+            thumbnail: true
         };
         // --- (END) GALLERY CONFIGURATION ---
 
@@ -290,11 +272,7 @@
                 loadingSpinner.style.display = 'none';
                 
                 const galleryInstance = lightGallery(galleryContainer, GALLERY_SETTINGS);
-                
-                galleryInstance.on('lgAfterMasonry', () => {
-                    galleryInstance.refresh();
-                });
-                
+
                 // --- (D) DEBUG CODE ---
                 galleryInstance.on('lgAfterSlide', (event) => {
                     const { index } = event.detail;
