@@ -211,8 +211,7 @@
             masonry: {
                 itemSelector: '.gallery-item',
                 percentPosition: true
-            },
-            videojs: true,
+            }
         };
         // --- (END) GALLERY CONFIGURATION ---
 
@@ -262,11 +261,13 @@
                     }
 
                     if (item.type === 'video') {
+                        const videoData = {
+                            source: [{src: correctFull}],
+                            attributes: {preload: false, controls: true}
+                        };
                         dynamicItems.push(`
                             <a  class="gallery-item"
-                                data-src="${correctFull}"
-                                data-width="${item.width}"
-                                data-height="${item.height}"
+                                data-video='${JSON.stringify(videoData)}'
                                 data-sub-html="<h4>${item.title}</h4><p>${item.description}</p>">
                                 <img class="img-responsive" src="${correctThumbnail}" alt="${item.alt}" />
                                 <div class="video-play-icon">▶</div>
