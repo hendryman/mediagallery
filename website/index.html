@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Media Gallery</title>
+    
+    <!-- 1. Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. lightGallery CSS -->
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery.min.css"
+    />
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-video.min.css"
+    />
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-thumbnail.min.css"
+    />
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-masonry.min.css"
+    />
+
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        
+        /* ... existing styles ... */
+        .gallery-item {
+            /* Width will be controlled by masonry plugin */
+            margin-bottom: 15px; /* Spacing for masonry */
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #ffffff;
+            display: block;
+            position: relative; /* For the play icon */
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img.img-responsive {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Video play icon overlay */
+        .video-play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            opacity: 0.8;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 70px;
+            transition: all 0.3s ease;
+            pointer-events: none; /* Allows click to go to the <a> tag */
+        }
+        .gallery-item:hover .video-play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* Loading Spinner */
+        #loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            left: 50%;
+            margin-left: -20px;
+            top: 50vh;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Add some padding for the masonry container */
+        #lightgallery {
+            padding: 15px;
+            /* Masonry will add its own styles, but we need to ensure it's a block */
+            display: block;
+        }
+    </style>
+    
+    <!-- Tailwind config for Inter font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="antialiased text-gray-800">
+
+    <!-- Header -->
+    <header class="text-center py-12 bg-white shadow-sm">
+        <h1 class="text-4xl font-bold text-gray-900">My Media Gallery</h1>
+        <p class="text-lg text-gray-600 mt-2">A gallery dynamically loaded and built with a masonry layout.</p>
+    </header>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner"></div>
+
+    <!-- 
+      Gallery Container 
+      The JavaScript will dynamically inject items here.
+    -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div id="lightgallery" class="w-full">
+            <!-- Gallery items will be injected here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- 
+      FIX: All JavaScript moved to the end of the <body> 
+      This ensures the DOM is loaded and scripts execute in order.
+    -->
+
+    <!-- 3. lightGallery Core JS -->
+    <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js"
+    ></script>
+
+    <!-- 4. lightGallery Plugins -->
+    <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/video/lg-video.min.js"
+    ></script>
+    <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js"
+    ></script>
+    <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js"
+    ></script>
+    <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/fullscreen/lg-fullscreen.min.js"
+    ></script>
+    
+    <!-- FIX: Swapped unpkg for cdnjs for the Masonry core library -->
+    <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"
+    ></script>
+    <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/masonry/lg-masonry.min.js"
+    ></script>
+    
+    <!-- 5. Custom JS to build and init the gallery -->
+    <script type="text/javascript">
+        
+        // --- (A) GALLERY CONFIGURATION ---
+        const JSON_FILE = 'content/-gallery.json';
+        
+        // We define the list of plugins we *want* to load
+        const requiredPlugins = {
+            'lgVideo': window.lgVideo,
+            'lgThumbnail': window.lgThumbnail,
+            'lgZoom': window.lgZoom,
+            'lgFullscreen': window.lgFullscreen,
+            'lgMasonry': window.lgMasonry
+        };
+
+        const loadedPlugins = [];
+        let missingPlugins = false;
+
+        // Check if plugins actually loaded
+        for (const key in requiredPlugins) {
+            if (requiredPlugins[key]) {
+                loadedPlugins.push(requiredPlugins[key]);
+            } else {
+                console.error(`Error: lightGallery plugin ${key} did not load. Check script tags.`);
+                missingPlugins = true;
+            }
+        }
+        
+        const GALLERY_SETTINGS = {
+            speed: 500,
+            download: true,
+            plugins: loadedPlugins, // Only pass the plugins that successfully loaded
+            thumbnail: true,
+            masonry: {
+                itemSelector: '.gallery-item',
+                percentPosition: true
+            },
+            videojs: true,
+        };
+        // --- (END) GALLERY CONFIGURATION ---
+
+        
+        // --- (B) GALLERY BUILDER SCRIPT ---
+        // FIX: Removed 'DOMContentLoaded' wrapper. The script is at the end
+        // of the body, so the DOM is already loaded.
+        
+        const galleryContainer = document.getElementById('lightgallery');
+        const loadingSpinner = document.getElementById('loading-spinner');
+
+        if (!galleryContainer) {
+            console.error("Gallery container #lightgallery not found!");
+        } else if (missingPlugins) {
+             galleryContainer.innerHTML = '<p class="text-center text-red-500 font-bold">Error: A required gallery plugin failed to load. Check the browser console (F12).</p>';
+             loadingSpinner.style.display = 'none';
+        } else {
+            // All plugins are loaded, proceed with building the gallery
+            buildGallery();
+        }
+
+        // Function to fetch and build the gallery
+        async function buildGallery() {
+            try {
+                // Add cache-busting query parameter
+                const response = await fetch(`${JSON_FILE}?v=${new Date().getTime()}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} - Could not fetch ${JSON_FILE}`);
+                }
+                const galleryItems = await response.json();
+                
+                if (!galleryItems || galleryItems.length === 0) {
+                    galleryContainer.innerHTML = '<p class="text-center text-red-500">Gallery is empty or JSON file is invalid.</p>';
+                    loadingSpinner.style.display = 'none';
+                    return;
+                }
+
+                let dynamicItems = [];
+
+                galleryItems.forEach(item => {
+                    const correctThumbnail = 'content/' + item.thumbnail;
+                    const correctFull = 'content/' + item.full;
+
+                    if (!item.type || !item.thumbnail || !item.full) {
+                        console.warn("Skipping incomplete item:", item);
+                        return;
+                    }
+
+                    if (item.type === 'video') {
+                        dynamicItems.push(`
+                            <a  class="gallery-item"
+                                data-src="${correctFull}"
+                                data-width="${item.width}"
+                                data-height="${item.height}"
+                                data-sub-html="<h4>${item.title}</h4><p>${item.description}</p>">
+                                <img class="img-responsive" src="${correctThumbnail}" alt="${item.alt}" />
+                                <div class="video-play-icon">▶</div>
+                            </a>
+                        `);
+                    } else {
+                        dynamicItems.push(`
+                            <a  class="gallery-item" 
+                                data-src="${correctFull}" 
+                                data-sub-html="<h4>${item.title}</h4><p>${item.description}</p>">
+                                <img class="img-responsive" src="${correctThumbnail}" alt="${item.alt}" />
+                            </a>
+                        `);
+                    }
+                });
+
+                galleryContainer.innerHTML = dynamicItems.join('');
+                
+                // --- (C) INITIALIZE LIGHTGALLERY ---
+                loadingSpinner.style.display = 'none';
+                
+                const galleryInstance = lightGallery(galleryContainer, GALLERY_SETTINGS);
+                
+                galleryInstance.on('lgAfterMasonry', () => {
+                    galleryInstance.refresh();
+                });
+                
+                // --- (D) DEBUG CODE ---
+                galleryInstance.on('lgAfterSlide', (event) => {
+                    const { index } = event.detail;
+                    const slide = galleryInstance.galleryItems[index];
+                    
+                    console.log(`--- DEBUG: Slide ${index} Loaded ---`);
+                    if(slide.subHtml) {
+                         console.log("Title:", slide.subHtml.match(/<h4>(.*?)<\/h4>/)[1]);
+                    }
+                    console.log("Source Path (data-src):", slide.src);
+                    
+                    fetch(slide.src)
+                        .then(res => {
+                            if(res.ok) {
+                                console.log("%cDebug fetch: SUCCESS - Path is valid.", "color: green");
+                            } else {
+                                console.error(`%cDebug fetch: FAILED - HTTP ${res.status}. Check this path: ${slide.src}`, "color: red");
+                            }
+                        })
+                        .catch(err => {
+                             console.error(`%cDebug fetch: FAILED - Network error. Check path or server.`, "color: red", err);
+                        });
+                    console.log("----------------------------");
+                });
+                
+                galleryInstance.on('lgSlideLoadError', (event) => {
+                     const { index } = event.detail;
+                     const slide = galleryInstance.galleryItems[index];
+                     console.error(`--- DEBUG: lightGallery FAILED to load slide ${index} ---`);
+                     console.error(`Failed path: ${slide.src}`);
+                     console.error("This confirms the browser cannot access the file at this path.");
+                     console.error("This is likely because the file is missing, corrupt, or you still need to run 'pip3 install pillow-heif' and re-run the python script.");
+                     console.error("---------------------------------------------------");
+                });
+
+            } catch (error) {
+                console.error("Failed to build gallery:", error);
+                galleryContainer.innerHTML = `<p class="text-center text-red-500 font-bold">Error: ${error.message}. <br> Please check the browser console (F12) for more details.</p>`;
+                loadingSpinner.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
+

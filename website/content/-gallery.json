@@ -1,0 +1,192 @@
+[
+    {
+        "type": "image",
+        "full": "oxo-01.jpg",
+        "thumbnail": "thumbnails/oxo-01_thumb.jpg",
+        "title": "Oxo 01",
+        "description": "File: oxo-01.jpg",
+        "alt": "oxo-01",
+        "width": 3310,
+        "height": 1862
+    },
+    {
+        "type": "image",
+        "full": "oxo-02.jpg",
+        "thumbnail": "thumbnails/oxo-02_thumb.jpg",
+        "title": "Oxo 02",
+        "description": "File: oxo-02.jpg",
+        "alt": "oxo-02",
+        "width": 3213,
+        "height": 5712
+    },
+    {
+        "type": "image",
+        "full": "oxo-03.jpg",
+        "thumbnail": "thumbnails/oxo-03_thumb.jpg",
+        "title": "Oxo 03",
+        "description": "File: oxo-03.jpg",
+        "alt": "oxo-03",
+        "width": 4032,
+        "height": 2268
+    },
+    {
+        "type": "image",
+        "full": "oxo-04.jpg",
+        "thumbnail": "thumbnails/oxo-04_thumb.jpg",
+        "title": "Oxo 04",
+        "description": "File: oxo-04.jpg",
+        "alt": "oxo-04",
+        "width": 5712,
+        "height": 3213
+    },
+    {
+        "type": "image",
+        "full": "oxo-05.jpg",
+        "thumbnail": "thumbnails/oxo-05_thumb.jpg",
+        "title": "Oxo 05",
+        "description": "File: oxo-05.jpg",
+        "alt": "oxo-05",
+        "width": 4032,
+        "height": 2268
+    },
+    {
+        "type": "image",
+        "full": "oxo-06.jpg",
+        "thumbnail": "thumbnails/oxo-06_thumb.jpg",
+        "title": "Oxo 06",
+        "description": "File: oxo-06.jpg",
+        "alt": "oxo-06",
+        "width": 4032,
+        "height": 2268
+    },
+    {
+        "type": "image",
+        "full": "oxo-07.jpg",
+        "thumbnail": "thumbnails/oxo-07_thumb.jpg",
+        "title": "Oxo 07",
+        "description": "File: oxo-07.jpg",
+        "alt": "oxo-07",
+        "width": 2614,
+        "height": 1470
+    },
+    {
+        "type": "video",
+        "full": "oxo-08.MOV",
+        "thumbnail": "thumbnails/oxo-08_thumb.jpg",
+        "title": "Oxo 08",
+        "description": "File: oxo-08.MOV",
+        "alt": "oxo-08",
+        "width": 1280,
+        "height": 720
+    },
+    {
+        "type": "image",
+        "full": "oxo-09.jpg",
+        "thumbnail": "thumbnails/oxo-09_thumb.jpg",
+        "title": "Oxo 09",
+        "description": "File: oxo-09.jpg",
+        "alt": "oxo-09",
+        "width": 2268,
+        "height": 4032
+    },
+    {
+        "type": "image",
+        "full": "oxo-10.jpg",
+        "thumbnail": "thumbnails/oxo-10_thumb.jpg",
+        "title": "Oxo 10",
+        "description": "File: oxo-10.jpg",
+        "alt": "oxo-10",
+        "width": 4032,
+        "height": 2268
+    },
+    {
+        "type": "image",
+        "full": "oxo-11.jpg",
+        "thumbnail": "thumbnails/oxo-11_thumb.jpg",
+        "title": "Oxo 11",
+        "description": "File: oxo-11.jpg",
+        "alt": "oxo-11",
+        "width": 4032,
+        "height": 2268
+    },
+    {
+        "type": "image",
+        "full": "oxo-12.jpg",
+        "thumbnail": "thumbnails/oxo-12_thumb.jpg",
+        "title": "Oxo 12",
+        "description": "File: oxo-12.jpg",
+        "alt": "oxo-12",
+        "width": 3103,
+        "height": 5517
+    },
+    {
+        "type": "image",
+        "full": "oxo-13.jpg",
+        "thumbnail": "thumbnails/oxo-13_thumb.jpg",
+        "title": "Oxo 13",
+        "description": "File: oxo-13.jpg",
+        "alt": "oxo-13",
+        "width": 2268,
+        "height": 4032
+    },
+    {
+        "type": "image",
+        "full": "oxo-14.jpg",
+        "thumbnail": "thumbnails/oxo-14_thumb.jpg",
+        "title": "Oxo 14",
+        "description": "File: oxo-14.jpg",
+        "alt": "oxo-14",
+        "width": 3178,
+        "height": 5650
+    },
+    {
+        "type": "image",
+        "full": "oxo-15.jpg",
+        "thumbnail": "thumbnails/oxo-15_thumb.jpg",
+        "title": "Oxo 15",
+        "description": "File: oxo-15.jpg",
+        "alt": "oxo-15",
+        "width": 2627,
+        "height": 1970
+    },
+    {
+        "type": "image",
+        "full": "oxo-16.jpg",
+        "thumbnail": "thumbnails/oxo-16_thumb.jpg",
+        "title": "Oxo 16",
+        "description": "File: oxo-16.jpg",
+        "alt": "oxo-16",
+        "width": 4032,
+        "height": 2268
+    },
+    {
+        "type": "video",
+        "full": "oxo-17.MOV",
+        "thumbnail": "thumbnails/oxo-17_thumb.jpg",
+        "title": "Oxo 17",
+        "description": "File: oxo-17.MOV",
+        "alt": "oxo-17",
+        "width": 1280,
+        "height": 720
+    },
+    {
+        "type": "image",
+        "full": "oxo-18.jpg",
+        "thumbnail": "thumbnails/oxo-18_thumb.jpg",
+        "title": "Oxo 18",
+        "description": "File: oxo-18.jpg",
+        "alt": "oxo-18",
+        "width": 4032,
+        "height": 2268
+    },
+    {
+        "type": "video",
+        "full": "oxo-19.MOV",
+        "thumbnail": "thumbnails/oxo-19_thumb.jpg",
+        "title": "Oxo 19",
+        "description": "File: oxo-19.MOV",
+        "alt": "oxo-19",
+        "width": 1280,
+        "height": 720
+    }
+]
